@@ -151,7 +151,7 @@ class QuantLinear(nn.Module):
         )
     
     def forward(self, x, force_cuda = False):
-        output = ext_gemm_half_q_half(x, self.q_handle, self.outfeatures, force_cuda)
+        output = ext_gemm_half_q_half(x.half(), self.q_handle, self.outfeatures, force_cuda)
 
         if self.bias is not None:
             output.add_(self.bias)
